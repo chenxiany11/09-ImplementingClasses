@@ -64,16 +64,18 @@ class Point(object):
         return Point(self.x, self.y)
 
     def move_to(self, x, y):
+        x1 = self.x
+        y1 = self.y
         self.x = x
         self.y = y
         self.moves_made += 1
-        self.distance += math.sqrt((x-self.startx)**2 + (y-self.starty)**2)
+        self.distance = self.distance + math.sqrt((self.x - x1)**2 + (self.y - y1)**2)
 
     def move_by(self, dx, dy):
         self.x = self.x + dx
         self.y = self.y + dy
         self.moves_made += 1
-        self.distance += math.sqrt(dx ** 2 + dy ** 2)
+        self.distance = self.distance + math.sqrt(dx ** 2 + dy ** 2)
 
     def get_number_of_moves_made(self):
         return self.moves_made
@@ -92,8 +94,7 @@ class Point(object):
         return self.distance
 
     def closer_to(self, p2, p3):
-        p2 = Point(p2.x, p2.y)
-        p3 = Point(p3.x, p3.y)
+
         if self.get_distance_from(p2) <= self.get_distance_from(p3):
             return p2
         else:
@@ -924,7 +925,7 @@ def run_test_get_distance_traveled():
         print('Actual:', p4.get_distance_traveled())
     """
     # --------------------------------------------------------------------------
-    # TODO: 11.  Follow the same instructions as in _TODO_ 3 above,
+    # done: 11.  Follow the same instructions as in _TODO_ 3 above,
     #    but for the  get_distance_traveled  method specified above.
     # --------------------------------------------------------------------------
     print()
@@ -1009,7 +1010,7 @@ def run_test_closer_to():
         print('Actual:  ', p1.closer_to(p4, p5) is p5)
     """
     # --------------------------------------------------------------------------
-    # TODO: 12.  Follow the same instructions as in TO-DO 3 above,
+    # DONE: 12.  Follow the same instructions as in TO-DO 3 above,
     #    but for the  closer_to  method specified above.
     # --------------------------------------------------------------------------
     print()
